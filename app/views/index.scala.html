@@ -2,4 +2,14 @@
 
 @main("Welcome to Play") {
   <h1>Welcome to Play! - Template Like Blah Info</h1>
+  
+  <table>
+  	<th>TLBs</th>
+  	<tr>Home</tr>
+  	<td> <a href="@routes.TlbController.list(0, "name", "desc", "")">list</a></td> </td>
+  	<td> <a href="@routes.TlbController.create()">create</a> </td> 
+  	<td rowspan=2>
+ 				<a class="btn success" id="add" href="@routes.TlbController.listAllJson">Get all results in Json</a>
+ 	</td> 
+  </table>
 }
