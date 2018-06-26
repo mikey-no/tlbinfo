@@ -43,7 +43,7 @@ The applications is built using the following:
 
 **Build notes**
 
-[For my notes on creating the application](https://github.com/mikeyno/tlbinfo/docs/BUILD.md)
+[For my notes on creating the application](https://github.com/mikey-no/tlbinfo/docs/BUILD.md)
 
 Things I found helpful in addtion to what I found on the play framework and other websites.
 
