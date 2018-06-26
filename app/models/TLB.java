@@ -28,6 +28,12 @@ public class TLB extends BaseModel {
     public String name;
     
     /*
+     * Authoritative short name of the TLB
+     */
+    @Constraints.Required
+    public String shortname;
+    
+    /*
      * Date the TLB was created
      */
     @Formats.DateTime(pattern="yyyy-MM-dd")

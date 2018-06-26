@@ -9,6 +9,7 @@ create table tlb (
   modified                      timestamp,
   tlbid                         varchar(255),
   name                          varchar(255),
+  shortname                     varchar(255),
   introduced                    timestamp,
   discontinued                  timestamp,
   address                       varchar(1024),

@@ -62,6 +62,7 @@
                 <tr>
                 	@header("id", "DB Tlb id")
                     @header("name", "Tlb name")
+                    @header("shortname", "Tlb short name")
                     @header("tlbid", "Tlb ID")
                     @header("introduced", "Introduced")
                     @header("discontinued", "Discontinued") 
@@ -88,6 +89,13 @@
                                 <em>-</em>
                             } else {
                                 @tlb.name
+                            }
+                        </td>
+                        <td>
+                            @if(tlb.shortname == null) {
+                                <em>-</em>
+                            } else {
+                                @tlb.shortname
                             }
                         </td>
                         <td>
