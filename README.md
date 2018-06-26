@@ -50,3 +50,4 @@ Things I found helpful in addtion to what I found on the play framework and othe
 **Licence**
 
 Not for commercial use.
+Author: mikey-no
