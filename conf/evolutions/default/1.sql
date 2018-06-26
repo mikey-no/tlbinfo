@@ -11,6 +11,7 @@ create table tlb (
   name                          varchar(255),
   introduced                    timestamp,
   discontinued                  timestamp,
+  address                       varchar(1024),
   note                          varchar(2048),
   constraint pk_tlb primary key (id)
 );

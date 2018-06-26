@@ -1,0 +1,32 @@
+@(tlbForm: Form[TLB])
+
+@import helper._
+
+@main("") {
+    <h1 id="homeTitle">Create an TLB</h1> 
+    
+    @if(tlbForm.hasGlobalErrors) {
+    <p class="error">
+        @for(error <- tlbForm.globalErrors) {
+            <p>@error.format(messages())</p>
+        }
+    </p>
+    }   
+    
+    @form(routes.TlbController.save()) {
+	      <fieldset>
+	            @CSRF.formField
+	            @inputText(tlbForm("name"), '_label -> "TLB name", '_help -> "")
+	            @inputText(tlbForm("tlbid"), '_label -> "TLB id", '_help -> "")
+	            @inputText(tlbForm("tlbAddress"), '_label -> "TLB Address", '_help -> "")
+	            @inputText(tlbForm("tlbNote"), '_label -> "TLB Note", '_help -> "")
+	            @inputText(tlbForm("introduced"), '_label -> "Introduced date", '_help -> "yyyy-MM-dd")
+	            @inputText(tlbForm("discontinued"), '_label -> "Discontinued date", '_help -> "yyyy-MM-dd")
+	       </fieldset>
+	        
+	        <div class="actions">
+	            <input type="submit" value="Create this TLB" class="btn primary"> or 
+	            <a href="@routes.TlbController.list()" class="btn">Cancel</a>
+	        </div>     
+    }
+}

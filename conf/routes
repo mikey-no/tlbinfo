@@ -3,7 +3,18 @@
 # ~~~~
 
 # An example controller showing a sample home page
-GET     /                           controllers.HomeController.index
+GET     /                       controllers.HomeController.index
+
+GET     /tlbs                   controllers.TlbController.list(p:Int ?= 0, s ?= "name", o ?= "asc", f ?= "")
+
+GET     /tlbs/new               controllers.TlbController.create
+POST    /tlbs/new               controllers.TlbController.save
+
+POST    /tlbs/delete/:id        controllers.TlbController.delete(id:Long)
+GET     /tlbs/delete/:id        controllers.TlbController.delete(id:Long)
+
+GET		/api/tlbs				controllers.TlbController.listAllJson
+POST	/api/tlbs				controllers.TlbController.uploadJson
 
 # Map static resources from the /public folder to the /assets URL path
-GET     /assets/*file               controllers.Assets.versioned(path="/public", file: Asset)
+GET     /assets/*file           controllers.Assets.versioned(path="/public", file: Asset)

@@ -1,0 +1,5 @@
+# Messages
+
+tlbs.list.title={0,choice,0#No TLB|1#One TLB|1<{0,number,integer} TLBs} found
+
+

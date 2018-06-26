@@ -38,6 +38,13 @@ public class TLB extends BaseModel {
      */
     @Formats.DateTime(pattern="yyyy-MM-dd")
     public Date discontinued;
+    
+    /**
+     * Address of the tlb
+     */
+    @Column(length=1024) 
+    public String address;
+       
         
     /**
      * Note to describe the tlb

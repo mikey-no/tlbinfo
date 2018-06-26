@@ -1,0 +1,187 @@
+@(currentPage: io.ebean.PagedList[TLB], currentSortBy: String, currentOrder: String, currentFilter: String)
+
+@****************************************
+* Helper generating navigation links    *
+****************************************@
+@link(newPage:Int, newSortBy:String) = @{
+
+    var sortBy = currentSortBy
+    var order = currentOrder
+
+    if(newSortBy != null) {
+        sortBy = newSortBy
+        if(currentSortBy == newSortBy) {
+            if(currentOrder == "asc") {
+                order = "desc"
+            } else {
+                order = "asc"
+            }
+        } else {
+            order = "asc"
+        }
+    }
+
+    // Generate the link
+    routes.TlbController.list(newPage, sortBy, order, currentFilter)
+
+}
+
+@**********************************
+* Helper generating table headers *
+***********************************@
+@header(key:String, title:String) = {
+    <th class="@key.replace(".","_") header @if(currentSortBy == key) { @{if(currentOrder == "asc") "headerSortDown" else "headerSortUp" } }">
+        <a href="@link(0, key)">@title</a>
+    </th>
+}
+
+@main("Welcome to Play - list page") {
+    <h1 id="homeTitle">List page</h1>
+    
+    <h1 id="homeTitle">@Messages("tlbs.list.title", currentPage.getTotalCount)</h1>
+    
+    @if(flash.containsKey("success")) {
+        <div class="alert-message warning">
+            <strong>Done!</strong> @flash.get("success")
+        </div>
+    }
+
+	<a class="btn success" id="add" href="@routes.TlbController.create()">Add a new tlb</a>
+	<a class="btn success" id="add" href="@routes.TlbController.listAllJson">Get all results in Json</a>
+	
+    @if(currentPage.getTotalCount == 0) {
+
+        <div class="well">
+            <em>Nothing to display</em>
+        </div>
+
+    } else {
+    
+            <table class="tlbs zebra-striped">
+            <thead>
+                <tr>
+                	@header("id", "DB Tlb id")
+                    @header("name", "Tlb name")
+                    @header("tlbid", "Tlb ID")
+                    @header("introduced", "Introduced")
+                    @header("discontinued", "Discontinued") 
+                    @header("note", "Note")
+                    @header("address", "Address")
+                    @header("created", "Created (record)")    
+                    @header("modified", "Modified (record)")
+                    @header("Delete", "Delete")
+                </tr>
+            </thead>
+            <tbody>
+    
+    @for(tlb <- currentPage.getList.asScala) {
+                    <tr>
+                        <td>
+                            @if(tlb.id == null) {
+                                <em>-</em>
+                            } else {
+                                @tlb.id
+                            }
+                        </td>
+                        <td>
+                            @if(tlb.name == null) {
+                                <em>-</em>
+                            } else {
+                                @tlb.name
+                            }
+                        </td>
+                        <td>
+                            @if(tlb.tlbid == null) {
+                                <em>-</em>
+                            } else {
+                                @tlb.tlbid
+                            }
+                        </td>
+                        <td>
+                            @if(tlb.introduced == null) {
+                                <em>-</em>
+                            } else {
+                                @tlb.introduced.format("dd MMM yyyy")
+                            }
+                        </td>
+                        <td>
+                            @if(tlb.discontinued == null) {
+                                <em>-</em>
+                            } else {
+                                @tlb.discontinued.format("dd MMM yyyy")
+                            }
+                        </td>
+                        <td>
+                            @if(tlb.note == null) {
+                                <em>-</em>
+                            } else {
+                            	@if(tlb.note.length > 20){
+                            		@* substring from char(0) to char(20) *@
+                                	@tlb.note.drop(0).take(20) ...
+                                }else{
+                                	@tlb.note
+                                }
+                            }
+                        </td>
+      
+						<td>
+                            @if(tlb.address == null) {
+                                <em>-</em>
+                            } else {
+                            	@if(tlb.address.length > 20){
+                            		@* substring from char(0) to char(20) *@
+                                	@tlb.address.drop(0).take(20) ...
+                                }else{
+                                	@tlb.note
+                                }
+                            }
+                        </td>
+                        <td>
+                            @if(tlb.created == null) {
+                                <em>-</em>
+                            } else {
+                                @tlb.created.format("dd MMM yyyy HH:mm:ss")
+                            }
+                        </td>
+                        <td>
+                            @if(tlb.modified == null) {
+                                <em>-</em>
+                            } else {
+                                @tlb.modified.format("dd MMM yyyy  HH:mm:ss")
+                            }
+                        </td>
+                        <td><a href="@routes.TlbController.delete(tlb.id)">Delete</a></td>
+                    </tr>
+                }
+                </tbody>
+              </table>
+              
+              <div id="pagination" class="pagination">
+            <ul>
+                @if(currentPage.hasPrev) {
+                    <li class="prev">
+                        <a href="@link(currentPage.getPageIndex - 1, null)">&larr; Previous</a>
+                    </li>
+                } else {
+                    <li class="prev disabled">
+                        <a>&larr; Previous</a>
+                    </li>
+                }
+                <li class="current">
+                    <a>Displaying @currentPage.getDisplayXtoYofZ(" to "," of ")</a>
+                </li>
+                @if(currentPage.hasNext) {
+                    <li class="next">
+                        <a href="@link(currentPage.getPageIndex + 1, null)">Next &rarr;</a>
+                    </li>
+                } else {
+                    <li class="next disabled">
+                        <a>Next &rarr;</a>
+                    </li>
+                }
+            </ul>
+        </div>
+    
+  }
+
+}
