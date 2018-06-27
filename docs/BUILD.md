@@ -1,4 +1,5 @@
 Build Notes DRAFT!
+=====
 
 1.	Using Play Java Seed
 
@@ -12,32 +13,41 @@ e.	sbt_vesion: 1.1.6 (default)
 ```
 2.	```cd .\tlbinfo```
 3.	compile and run the application
+
 a.	```sbt run```
-b.	….wait…
+
+b.	…wait…
+
 4.	check the application is working
+
 a.	web browser: http://localhost:9000/
+
 b.	(if relevant) – ignore warnings about old cookies from a previous play application
 
- success
+![Image 1](/docs/build-img/1.jpg)
+
+
 
 5.	configure to work with eclipse (see: https://www.playframework.com/documentation/2.6.x/IDE)
 
 ```<projectroot>\project\plugins.sbt```
  
+ ![Image 2](/docs/build-img/2.jpg)
 
 6.	Force compilation edit build.sbt
 
 ```<projectroot>\build.sbt```
 
+![Image 3](/docs/build-img/3.jpg)
 Save changes
 
 7.	Do a compile
 a.	```sbt compile```
 8.	Do eclipse (to add the info to the project for ecplise to make use of)
+
 a.	```sbt eclipse```
 
- 
-
+![Image 4](/docs/build-img/4.jpg)
 
 9.	Add a gitignore
 ```<projectroot>\.gitignore```
@@ -65,27 +75,42 @@ org.scala-ide.sdt.update-site/site.xml
 git
 git init
 ```
+
+![Image 5](/docs/build-img/5.jpg)
+
 11.	Git add all files and commit
 ```
 git add .
 git commit –m “Initial commit”
 ```
 12.	Import into Eclipse image 
+
+![Image 6](/docs/build-img/6.jpg)
+
 Click Finish
+
 13.	Prove eclipse and sbt and play are working, edit 
 
 ```<projectroot>\app\views\index.scala.html```
- 
-All text “TLB Info”
-14.	Set sbt running for auto compilation
-~run
-Check in a browser
- Success
-15.	Add ebean to the project as our ORM
-<project root>\project\plugins.sbt
-Add
-addSbtPlugin("com.typesafe.sbt" % "sbt-play-ebean" % "4.1.3")
+![Image 7](/docs/build-img/7.jpg)
 
+All text “TLB Info”
+
+14.	Set sbt running for auto compilation
+```~run```
+
+Check in a browser
+
+![Image 8](/docs/build-img/8.jpg)
+
+ Success
+
+15.	Add ebean to the project as our ORM
+```<project root>\project\plugins.sbt```
+Add
+```
+addSbtPlugin("com.typesafe.sbt" % "sbt-play-ebean" % "4.1.3")
+```
 see: https://github.com/playframework/play-ebean#releases
 
 Add
@@ -97,7 +122,7 @@ To
 ```
 <project root>\build.sbt
 ```
-Add seeting to the conf file
+Add setting to the conf file
 ```
 <project root>\application.conf
 ```
@@ -124,13 +149,15 @@ addSbtPlugin("com.typesafe.sbt" % "sbt-play-ebean" % "4.1.3")
 20.	Run ```sbt ~run```
 21.	Get error message again a few times
 22.	Quit the project
-23.	Run another with very similar configuration, with success (doubt your sanity)
+23.	Run another with very similar configuration, with success (doubt your sanity)  :confused:
 24.	Try this project again.
 25.	```sbt clean```
 a.	Just for luck
 26.	Run the project with success
 27.	Update the welcome message on the index page
- 
+
+![Image 9](/docs/build-img/9.jpg)
+
 28.	Check all code into git
 ```
 git add .
@@ -141,12 +168,14 @@ git commit -m "working basic ebean configuration and model added (no repository 
 29.	Add in the repository stuff. This is where the Ebean demo project on play framework site puts the model logic such as the non-blocking database access.
 
 30.	Add a new package
- 
+
+![Image 11](/docs/build-img/11.jpg) 
 
 31.	Click finish
 
 32.	Add in the “thing” to tell Akka where to get configuration settings and the name of the thread to run DB operations on.
- 
+![Image 12](/docs/build-img/12.jpg)
+
 33.	Add the class to use the (H2) Database
 34.	Note about the blocking call to the database I have left in:
 
@@ -155,5 +184,5 @@ Using this in production or at the end of a development sprint would be very bad
 
 35.	Add a simple web page to show the TLB in a list.
 
-36.	Added the other forms and controllers to add TLBs and download the data in Json or see the results in a human readable form… 
+36.	Added the other forms and controllers to add TLBs and download the data in Json or see the results in a human readable form…  :simple_smile:
 37.	The end!

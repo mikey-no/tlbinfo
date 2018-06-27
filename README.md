@@ -5,11 +5,11 @@ TLB (Template Like Blah) Information Micro Service
 
 Provide an template API application to clients needing information on Template Like Blah. Besides being a template. 
 
-Aims:
-1)	We need a reliable programmatically friendly way to get this information
-2)	We need a “hello world” micro service application to test other technologies and ways of working
+1)	Need a reliable programmatically friendly way to share this information
+2)	Need a “hello world” micro service application to test other technologies and ways of working
 3)	It needs to be cheaper clients to obtain the blah information than parsing the human readable excel file the information etc
 4)	Reduce the data quality problems from not having an easy way to access high integrity Blah information
+
 Requirements
 
 ***Provide:***
@@ -43,7 +43,7 @@ The applications is built using the following:
 
 **Build notes**
 
-[For my notes on creating the application](https://github.com/mikey-no/tlbinfo/docs/BUILD.md)
+[For my notes on creating the application](https://github.com/mikey-no/tlbinfo/blob/master/docs/BUILD.md)
 
 Things I found helpful in addtion to what I found on the play framework and other websites.
 
